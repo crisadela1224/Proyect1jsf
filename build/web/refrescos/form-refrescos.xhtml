@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{str.refrescoFormTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h2>#{str.refrescoFormHeader}</h2>
+                <p:fieldset legend="#{str.refrescoLegendForm}">
+                    <h:form>
+                        <h:panelGrid columns="1">
+                            <p:inputText placeholder="#{str.refrescoNamePrompt}"
+                                         value="#{refrescoBean.refresco.nombreRefresco}"></p:inputText>
+                            <p:inputText placeholder="#{str.refrescoTipoPromp}"
+                                         value="#{refrescoBean.refresco.tipo}" ></p:inputText>
+                            <p:selectOneMenu value="#{refrescoBean.refresco.sabor.idSabor}">
+                                <f:selectItems value="#{refrescoBean.sabores}" var="s"
+                                               itemLabel="#{s.tipo}" itemValue="#{s.idSabor}"></f:selectItems>
+                            </p:selectOneMenu>
+                          
+                        </h:panelGrid>
+                        <p:commandButton value="#{str.buttonSave}"
+                                         action="#{refrescoBean.guardar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonDelete}"
+                                         action="#{refrescoBean.eliminar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonCancel}"
+                                         action="#{refrescoBean.cancelar()}"></p:commandButton>
+                    </h:form>
+                </p:fieldset>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

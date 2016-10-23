@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{str.refrescoListTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h1>#{str.escuelaListTitle}</h1>
+                <h:form>
+                    <p:commandButton value="#{str.buttonAdd}"
+                                     action="#{refrescoBean.iniciar()}"></p:commandButton>
+                </h:form>
+                <p:dataTable value="#{refrescoBean.refrescos}" var="r">
+                    <p:column headerText="#{str.action}">
+                        <h:form>
+                            <p:commandButton value="#{str.buttonEdit}"
+                                             action="#{refrescoBean.editar(r)}"></p:commandButton>
+                        </h:form>
+                    </p:column>
+                    <p:column headerText="#{str.refrescoNameHeader}">
+                        <p:outputLabel value="#{r.nombreRefresco}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.refrescoTipoHeader}">
+                        <p:outputLabel value="#{r.tipo}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.saboNameHeader}">
+                        <p:outputLabel value="#{r.sabor.tipo}"></p:outputLabel>
+                    </p:column>
+                 </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
